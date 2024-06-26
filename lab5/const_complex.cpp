@@ -21,7 +21,8 @@ class Complex{
 };
 
 void Complex::display() const {
-    cout << "number: " << get_real() << " + " << get_imaginary() << "i" << endl;
+    cout << "number: " << get_real() << " + " 
+    << get_imaginary() << "i" << endl;
 }
 
 int main(){
