@@ -13,3 +13,13 @@ to refer to a function. Using funciton pointer allows a c++ program to select a
 function dynamically at run time. We can also pass a function as an argument to another function.
 Here, the function is passed as a pointer. The funcition pointer cannot be dereferenced.
 C++ also allows us to compare two function pointers.
+
+
+pointer to derived class:
+
+we can use the pointer of base class to point to derived class but this pointer will only be able to
+point to properties derived from base class but not the original properties defined with in the derived
+class
+
+but we can use((DC *)bptr) to cast base class pointer to derived class pointer and use it access locally defined members.
+
