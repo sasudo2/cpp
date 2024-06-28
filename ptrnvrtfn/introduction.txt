@@ -1,0 +1,15 @@
+pointer are special type of veriable that are used to point to address of other
+veriables.
+syntax: datatype *veriable_name;
+Array of pointer
+similart to other variables we can create an array of pointers in C++. The array of pointer represents a collection of adress. By declearing array of pointers,
+we can save substantial amount of memmory space.
+
+syntax: datatype *veriable_nam[size];
+
+Pointers to funciton:
+The pointer to funciton is also known as callback function. We can use these function pointer
+to refer to a function. Using funciton pointer allows a c++ program to select a
+function dynamically at run time. We can also pass a function as an argument to another function.
+Here, the function is passed as a pointer. The funcition pointer cannot be dereferenced.
+C++ also allows us to compare two function pointers.
