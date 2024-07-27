@@ -1,47 +1,79 @@
 #include <iostream>
 
-enum WeekDays{
-    sunday,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday
+using namespace std;
+
+class c1
+{
+    
+    public:
+    int a;
+    char b;
+    c1(int a, char b): a(a), b(b){}
+
+    c1()
+    {
+        a = 0;
+        b = 0;
+    }
+
+    void display()
+    {
+        cout << a << " " << b << endl;
+    }
+
+    // operator c2(){
+    //     c2 x;
+    //     x.ac = a;
+    //     x.cb = b;
+    //     return x;
+    // }
 };
 
-bool operator == (WeekDays & w1, WeekDays & w2){
-    if(w1 == sunday && w2 ==  sunday){
-        return true;
+class c2
+{
+    public:
+    int ac;
+    int cb;
+    c2()
+    {
+        ac = 0;
+        cb = 0;
     }
-    else if(w1 == monday && w2 == monday){
-        return true;
+    c2(c1 x)
+    {
+        ac = x.a;
+        cb = x.b;
     }
-    else if(w1 == tuesday && w2 == tuesday){
-        return true;
-    }
-    else if(w1 == wednesday && w2 == wednesday){
-        return true;
-    }
-    else if(w1 == wednesday && w2 == wednesday){
-        return true;
-    }
-    else if(w1 == thursday && w2 == thursday){
-        return true;
-    }
-    else if(w1 == friday && w2 == friday){
-        return true;
-    }
-    else if(w1 == saturday && w2 == saturday){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
-int main(){
-    WeekDays w1 = sunday;
-    WeekDays w2 = monday;
+    c2(c2& x)
+    {
+        ac = x.ac;
+        cb = x.cb;
+    }
+    operator c1(){
+        c1 x;
+        x.a = ac;
+        x.b = cb;
+        return x;
+    }
+    void display()
+    {
+        cout << ac << " " << cb << endl;
+    }
+};
+
+int main()
+{
+    c1 a(1, 'c'), d;
+    a.display();
+    c2 b, c;
+    b = a;
+    b.display();
+    c = b;
+    c.display();
+    a = c1(b);
+    a.display();
+    d = b;
+    d.display();
     return 0;
 }
