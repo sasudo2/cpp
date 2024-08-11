@@ -11,6 +11,7 @@ class Inventory{
     float price;
     public:
     void readdata(){
+        char c;
         cout << "Enter Name: "; cin >> item;
         cout << "Enter Code: "; cin >> code;
         cout << "Enter Price: "; cin >> price;
@@ -19,6 +20,28 @@ class Inventory{
         cout << "Name: " << item << endl;
         cout << "Code: " << code << endl;
         cout << "price: " << price << endl << endl;
+    }
+    void serialize(fstream &file){
+        size_t length = item.size();
+        file.write((char*) & length, sizeof(length));
+        file.write((char*) item.c_str(), length);
+        file.write((char*) &code, sizeof(code));
+        file.write((char*) &price, sizeof(price));
+
+    }
+    void deserialize(fstream &file){
+        size_t length;
+        file.read((char*) &length, sizeof(length));
+        item.resize(length);
+        file.read(&item[0], length);
+        file.read((char*) &code, sizeof(code));
+        file.read((char*) &price, sizeof(price));
+    }
+    bool same_as(int i){
+        if(i == code){
+            return true;
+        }
+        return false;
     }
 };
 
@@ -34,17 +57,19 @@ int main(){
     for(int i = 0; i < 2; i++)
     {
         items[i].readdata();
-        file.write((char *) & items[i], sizeof(items[i]));
+        items[i].serialize(file);
     }
 
     //reading the data
     Inventory reads;
+    file.clear();
     file.seekg(0);
-    while(file.read((char*)& reads, sizeof(reads))){
+    while(file.peek() != EOF){
         cout << "item" << endl;
-        
+        reads.deserialize(file);
         reads.writedata();
     }
     file.close();
     return 0;
 }
+
